@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon-16x16.png" type="image/x-icon">
+    <title>Contact Us | Children Impact & Development Initiative</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D7A436;
+            --red: #C43B3B;
+            --gray: #7C7C7C;
+            --white: #FFFFFF;
+            --black: #000000;
+            --light-bg: #F8F9FA;
+            --border: #E5E5E5;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--black);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-spacing {
+            padding: 6rem 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--white);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--black);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/contact-hero.jpg') center/cover;
+            padding: 12rem 0 6rem;
+            text-align: center;
+            color: var(--white);
+            margin-top: 80px;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Introduction */
+        .introduction {
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .intro-text {
+            font-size: 1.25rem;
+            color: var(--black);
+            line-height: 1.8;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Forms Section */
+        .forms-section {
+            background: var(--light-bg);
+        }
+
+        .forms-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .form-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-card h3 {
+            font-size: 1.75rem;
+            color: var(--red);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--black);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-checkbox input {
+            margin-top: 0.2rem;
+        }
+
+        .form-checkbox label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2.5rem;
+            background: var(--gold);
+            color: var(--black);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background: #e6b436;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(215, 164, 54, 0.3);
+        }
+
+        /* Contact Info - Single Line */
+        .contact-info {
+            background: var(--white);
+        }
+
+        .contact-single-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--light-bg);
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1rem;
+            color: var(--red);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-details p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        /* Partner CTA */
+        .partner-cta {
+            background: var(--light-bg);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+
+        .footer-section p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gray);
+            border-radius: 8px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid var(--gray);
+            color: var(--gray);
+        }
+
+        /* Form Success Message */
+        .form-success {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .forms-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-single-line {
+                flex-wrap: wrap;
+                gap: 2rem;
+                justify-content: center;
+            }
+            
+            .contact-item {
+                flex: 1;
+                min-width: 200px;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background-color: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.1);
+                padding: 2rem 0;
+                gap: 0;
+            }
+
+            .nav-menu li {
+                margin: 1rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .section-spacing {
+                padding: 4rem 0;
+            }
+
+            .form-card {
+                padding: 2rem;
+            }
+
+            .contact-single-line {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+            
+            .contact-item {
+                min-width: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .form-card {
+                padding: 1.5rem;
+            }
+            
+            .contact-single-line {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+
+
+
+         .donation-section {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .bank-transfer-card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .bank-transfer-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-header {
+            background: #D7A436;
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .card-header h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h2::before {
+            content: "🏦";
+            font-size: 1.3rem;
+        }
+
+        .card-body {
+            padding: 2.5rem;
+        }
+
+        .bank-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .detail-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .detail-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .detail-value {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #2c3e50;
+            padding: 1rem 1.25rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #D7A436;
+            word-break: break-word;
+        }
+
+        .divider {
+            height: 1px;
+            background: #eaecee;
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.9rem;
+            }
+            
+            .card-body {
+                padding: 2rem;
+            }
+            
+            .detail-value {
+                font-size: 1.1rem;
+                padding: 0.9rem 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+           
+            
+            .section-title {
+                font-size: 1.7rem;
+            }
+            
+            .card-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .card-body {
+                padding: 1.5rem;
+            }
+            
+            .detail-value {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="CIDI Logo">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="programs.html">Programs</a></li>
+                <li><a href="contact.html" style="color: var(--gold);">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">Get In Touch</h1>
+            <p class="page-subtitle">We'd love to hear from you. Reach out to learn more about our work or join our mission as a volunteer.</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section class="introduction section-spacing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Connect With Us</h2>
+                <p class="section-subtitle">Whether you have questions, want to partner with us, or are ready to make a difference as a volunteer</p>
+            </div>
+           
+        </div>
+    </section>
+
+
+
+      <!-- Donation section-->
+     <section class="donation-section">
+        <h1 class="section-title">Bank Transfer Details</h1>
+        
+        <div class="bank-transfer-card">
+            <div class="card-header">
+                <h2>Direct Bank Transfer</h2>
+            </div>
+            
+            <div class="card-body">
+                <div class="bank-details">
+                    <div class="detail-group">
+                        <div class="detail-label">Bank Name</div>
+                        <div class="detail-value">FCMB</div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="detail-group">
+                        <div class="detail-label">Account Name</div>
+                        <div class="detail-value">Children Impact and Development Initiative</div>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    
+                    <div class="detail-group">
+                        <div class="detail-label">Account Number</div>
+                        <div class="detail-value">386 1523 014</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Forms Section -->
+    <section class="forms-section section-spacing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get Involved</h2>
+                <p class="section-subtitle">Choose how you'd like to connect with our organization</p>
+            </div>
+            
+            <div class="forms-container">
+                <!-- Contact Form -->
+                <div class="form-card">
+                    <h3>Send Us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName" class="form-label">Full Name *</label>
+                            <input type="text" id="contactName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactEmail" class="form-label">Email Address *</label>
+                            <input type="email" id="contactEmail" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactPhone" class="form-label">Phone Number</label>
+                            <input type="tel" id="contactPhone" class="form-input">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactSubject" class="form-label">Subject *</label>
+                            <select id="contactSubject" class="form-select" required>
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="donation">Donation Question</option>
+                                <option value="media">Media Inquiry</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contactMessage" class="form-label">Message *</label>
+                            <textarea id="contactMessage" class="form-textarea" placeholder="Tell us how we can help you..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn">Send Message</button>
+                        <div class="form-success" id="contactSuccess">Thank you for your message! We'll get back to you soon.</div>
+                    </form>
+                </div>
+
+                <!-- Volunteer Form -->
+                <div class="form-card">
+                    <h3>Become a Volunteer</h3>
+                    <form id="volunteerForm">
+                        <div class="form-group">
+                            <label for="volunteerName" class="form-label">Full Name *</label>
+                            <input type="text" id="volunteerName" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerEmail" class="form-label">Email Address *</label>
+                            <input type="email" id="volunteerEmail" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerPhone" class="form-label">Phone Number *</label>
+                            <input type="tel" id="volunteerPhone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerLocation" class="form-label">Location/City *</label>
+                            <input type="text" id="volunteerLocation" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerProgram" class="form-label">Preferred Program Area *</label>
+                            <select id="volunteerProgram" class="form-select" required>
+                                <option value="">Select program area</option>
+                                <option value="education">Education for All</option>
+                                <option value="healthcare">Healthcare Access</option>
+                                <option value="community">Community Development</option>
+                                <option value="women">Women Empowerment</option>
+                                <option value="youth">Youth Development</option>
+                                <option value="emergency">Emergency Response</option>
+                                <option value="any">Any Program</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerSkills" class="form-label">Skills & Experience</label>
+                            <textarea id="volunteerSkills" class="form-textarea" placeholder="Tell us about your skills, background, and why you want to volunteer..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volunteerAvailability" class="form-label">Availability *</label>
+                            <select id="volunteerAvailability" class="form-select" required>
+                                <option value="">Select availability</option>
+                                <option value="weekdays">Weekdays</option>
+                                <option value="weekends">Weekends</option>
+                                <option value="evenings">Evenings</option>
+                                <option value="flexible">Flexible</option>
+                                <option value="remote">Remote/Online</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-checkbox">
+                            <input type="checkbox" id="volunteerAgreement" required>
+                            <label for="volunteerAgreement">I agree to receive communication about volunteer opportunities and understand that this is a volunteer application, not a guarantee of placement.</label>
+                        </div>
+                        
+                        <button type="submit" class="btn">Apply to Volunteer</button>
+                        <div class="form-success" id="volunteerSuccess">Thank you for your interest in volunteering! We'll contact you soon with next steps.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information - Single Line -->
+    <section class="contact-info section-spacing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact Information</h2>
+                <p class="section-subtitle">Reach us through any of these channels</p>
+            </div>
+            
+            <div class="contact-single-line">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>childrenimpact@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div class="contact-details">
+                        <h4>Phone</h4>
+                        <p>+234 803 7231 244</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Address</h4>
+                        <p>D22a, Union Homes Estate, Kuje, Abuja, Nigeria.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">🕒</div>
+                    <div class="contact-details">
+                        <h4>Office Hours</h4>
+                        <p>Mon-Fri: 9AM-6PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner CTA -->
+    <section class="partner-cta section-spacing">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="section-title">Interested in Partnership?</h2>
+                <p class="section-subtitle">We're always looking for organizations and businesses to collaborate with</p>
+                <p class="intro-text" style="margin-bottom: 2rem;">
+                    Whether you're a corporation, foundation, or community organization, we believe in the power of partnership to create greater impact. Let's discuss how we can work together.
+                </p>
+                <a href="mailto: childrenimpact@gmail.com" class="btn btn-secondary">Become a Partner</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                  <h3>Get In Touch</h3>
+                    <p>childrenimpact@gmail.com</p>
+                    <p>Phone: +234 803 7231 244</p>
+                    <p>Address: D22a, Union Homes Estate, Kuje, Abuja, Nigeria</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="index.html" style="color: var(--gray); text-decoration: none;">Home</a></p>
+                    <p><a href="about.html" style="color: var(--gray); text-decoration: none;">About Us</a></p>
+                    <p><a href="programs.html" style="color: var(--gray); text-decoration: none;">Our Programs</a></p>
+                    <p><a href="contact.html" style="color: var(--gray); text-decoration: none;">Contact</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987c6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.24 14.865 3.75 13.714 3.75 12.417s.49-2.448 1.376-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.886.875 1.376 2.026 1.376 3.323s-.49 2.448-1.376 3.323c-.875.807-2.026 1.297-3.323 1.297z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="Twitter">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 NGO Name. All rights reserved. Making a difference, one community at a time.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const volunteerForm = document.getElementById('volunteerForm');
+        const contactSuccess = document.getElementById('contactSuccess');
+        const volunteerSuccess = document.getElementById('volunteerSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate form submission
+            contactSuccess.style.display = 'block';
+            contactForm.reset();
+            setTimeout(() => {
+                contactSuccess.style.display = 'none';
+            }, 5000);
+        });
+
+        volunteerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Simulate form submission
+            volunteerSuccess.style.display = 'block';
+            volunteerForm.reset();
+            setTimeout(() => {
+                volunteerSuccess.style.display = 'none';
+            }, 5000);
+        });
+
+        // Phone number formatting
+        const phoneInputs = document.querySelectorAll('input[type="tel"]');
+        phoneInputs.forEach(input => {
+            input.addEventListener('input', function(e) {
+                const x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+                e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+            });
+        });
+    </script>
+</body>
+</html>
